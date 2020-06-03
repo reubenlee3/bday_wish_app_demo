@@ -1,4 +1,5 @@
 import { el } from './base';
+import { dataList } from '../models/dataDummy'
 
 
 export const renderWishList = (wishArr) => {

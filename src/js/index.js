@@ -1,6 +1,6 @@
 import '../css/style.css';
 import '../img/icons.svg';
-import '../img/loading.jpeg';
+import '../img/danbam.png';
 import '../img/dessert.png';
 import axios from 'axios';
 
@@ -23,42 +23,34 @@ import * as loadingView from './views/loadingView';
 import { el, renderLoader, clearLoader } from './views/base';
 import { setTimeout } from 'core-js';
 
-
-
-
-
+import {dataList} from './models/dataDummy'
 
 const state = {};
+window.x = new List();
 
 /*****************************
  * Full List controller
  *****************************/
 
 // Get the full list of wishes 
-const controlList = async () => {
+const controlList = () => {
 
     state.list = new List();
 
     renderLoader(el.wishContent);
 
-    try {
-        // Retrive search results
-        await state.list.getFullList();
+    setTimeout(() => {
+            // Retrive search results
+            state.list.getFullList();
 
-        // Prepare UI
-        listView.clearList();
-        clearLoader();
+            // Prepare UI
+            listView.clearList();
+            clearLoader();
 
-        // Render wishes on to wish body
-        listView.renderWishList(state.list.result);
+            // Render wishes on to wish body
+            listView.renderWishList(state.list.result);
 
-    } 
-
-    catch(error) {
-        alert('Somethign went wrong');
-        console.log(error)
-        clearLoader();
-    }
+    }, 3000)
 };
 
 /*****************************
@@ -208,9 +200,9 @@ el.submit.onclick = function() {
 // Information modal
 
 
-el.modalInfoClose.onclick = function() {
-    el.modalInfo.style.display = "none";
-};
+// el.modalInfoClose.onclick = function() {
+//     el.modalInfo.style.display = "none";
+// };
 
 
 // Reset View 
@@ -262,8 +254,6 @@ setTimeout(function(){loadingView.removeLoad(); }, 10500);
 // Load the full list when the page loads
 window.addEventListener('load', () => {
     
-    // Load the information modal
-    el.modalInfo.style.display = "block";
 
     // Load all wishes upon loading window
     controlList();
