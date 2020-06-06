@@ -8,51 +8,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/style.css"> -->
     <link rel="icon" href="img/dessert.png" type="image/x-icon">
-    <title>QtPat00ti3</title>
+    <title>Birthday Wish!</title>
 </head>
 
 <body>
-    <!-- comment this loading page out first -->
-    <!-- <div id="load_screen">
-        <div id="loading">
-            <h1> 
-                <span class="txt-type" data-wait="3000" data-words='["Happy Birthday Beautiful!"]'></span>
-            </h1>
-        </div>
-    </div> -->
 
     <!-- Modal for information, to be deleted after closing posts -->
-    <!-- <div id="modal-info" class="modal">
+    <div id="modal-info" class="modal">
         <div class="modal-content">
 
-            <h2>Hello amazing person visiting this website. Just a bit of background information of this site.</h2>
+            <h2>Hello amazing person visiting this website.</h2>
             <ul>
                 <li>
-                    Purpose of website is to compile all bday wishes for babygirl since we 
-                    cannot birthday bash her during this period sobbles wobbles.
+                    This demo site is basically just for us to show how the original website looks and feels like. Data used here is dummy data.
+                    We use setTimeout functions to mimic how an AJAX request would look and feel like, and as much as possible we retained most of the functions
+                    of the original website.
                 </li>
                 <li>
-                    Main function: Write your wish AND if you want you can upload a photo with bbg woohoo (its secure dont worry). 
+                    Very briefly, the backend is a Django Rest Framework that serves an API. The frontend is just simple vanilla JS (that interacts with the API via AJAX requests),
+                    as well as simple CSS for styling.
+                </li>
+                <li>
+                    Main function: In the main site, you could write your wish and if you want you can upload a photo.
+                    Text based data is stored in Heroku's default postgreSQL database, while images are stored in AWS S3. 
                     Click on the "Write a wish" button and you can write to your
                     heart's content. Upon submitting you should see the wish field refresh and your wish will be the first on the list.
-                    If even after refreshing you still dont see your wish refresh a few more times. If legit cannot then come find Reuben.
+                    Do note that we do not store what you wrote, this is for demo purposes only. In the original website a POST request is sent via the DRF API. 
                 </li>
                 <li>
-                    Caveat 1: Unfortunately while building this site we didnt have the time to build and test the edit post functionality. 
-                    If die die want to edit your post let Reuben know hehe.
+                    Main function 2: You could also search for a particular wish. The fields that you can search are author and title of wish.
                 </li>
                 <li>
-                    Caveat 2: Everyone can see everyone's wish to babygirl so sorry but pls dont paiseh to post sweet2 stuff kay.
-                </li>
-                <li>
-                    Any issues let reuben know ok!
+                    Feel free to toy around and do leave a comment on the linkedIN post if you have any feedback, thank you! :)
                 </li>
             </ul>
             <div class="row">
                 <a class="btn btn-danger" id="modal-info__close">Close</a>
             </div>
         </div>
-    </div> -->
+    </div>
     
 
     <div class="main-body">
@@ -82,7 +76,7 @@
         </div>
         
         <div class="container big">
-            <h2><strong>A collection of nice things to read ❤️</strong></h2><br>
+            <h2><strong>A collection of positive vibes 💪</strong></h2><br>
             <div class="btn-group">
                 <button class="btn" id="modal-content__button">WRITE YOUR WISH</button>
                 <button class="btn" id="reset__button">RESET VIEW</button>
@@ -138,7 +132,7 @@
     </div>
 
     <div class="copyright">
-        Created by Reuben Lee and Kevin Heng. Powered by Love.
+        Created by Reuben Lee and Kevin Heng.
     </div>
 </body>
 

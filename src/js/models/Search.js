@@ -1,18 +1,19 @@
 import axios from 'axios'
+import { dataList } from './dataDummy'
 
 export class Search {
     constructor(query) {
         this.query = query;
     }
 
-    async getResults() {
+    getResults() {
+        console.log(this.query)
 
-        try {
-            const res = await axios(`https://bday-wish-api.herokuapp.com/api/search/?search=${this.query}`);
-            this.result = res.data;
-        } catch(error) {
-            alert(error);
-        };
+        // retrieve data 
+        const dataSearch = dataList;
+        this.result = dataSearch.filter((obj) => (obj.author.toLowerCase().includes(this.query) || obj.title.toLowerCase().includes(this.query)));
+        
+
     }
 }
 
@@ -21,17 +22,16 @@ export class SearchItem {
         this.id = id;
     }
 
-    async getResults() {
+    getResults() {
 
-        try {
-            const res = await axios(`https://bday-wish-api.herokuapp.com/api/detail/${this.id}`);
-            this.title = res.data.title;
-            this.image = res.data.image;
-            this.author = res.data.author;
-            this.wish = res.data.wish;
-
-        } catch(error) {
-            alert(error)
-        };
+        // retrieve data 
+        const dataSearch = dataList;
+        const res = dataSearch.filter((obj) => (obj.id === parseInt(this.id)));
+        
+        this.title = res[0].title;
+        this.image = res[0].image;
+        this.author = res[0].author;
+        this.wish = res[0].wish;
+        
     }
 }

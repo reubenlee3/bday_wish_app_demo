@@ -11,7 +11,7 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://reubenlee3.github.io/bday_wish_app",
+  "homepage": "https://reubenlee3.github.io/bday_wish_app_demo",
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",

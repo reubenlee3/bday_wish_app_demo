@@ -10,14 +10,12 @@ import List from './models/List';
 import Post from './models/Post';
 
 import { Search, SearchItem } from './models/Search';
-import Loading from './models/Loading';
 
 
 // Views Imports
 import * as listView from './views/listView';
 import * as postView from './views/postView';
 import * as searchView from './views/searchView';
-import * as loadingView from './views/loadingView';
 
 // Base Imports
 import { el, renderLoader, clearLoader } from './views/base';
@@ -26,7 +24,9 @@ import { setTimeout } from 'core-js';
 import {dataList} from './models/dataDummy'
 
 const state = {};
-window.x = new List();
+window.x = new Search('happy');
+window.z = new SearchItem(74)
+window.y = dataList;
 
 /*****************************
  * Full List controller
@@ -58,7 +58,7 @@ const controlList = () => {
  *****************************/
 
 // Function for the search body
-const controlSearch = async () => {
+const controlSearch = () => {
     // 1. Get query from view
     const query = searchView.getSearchInput();
 
@@ -71,23 +71,20 @@ const controlSearch = async () => {
         searchView.clearResults();
         renderLoader(el.searchContent);
 
-        try {
-            // 4. Search for recipes
-            await state.search.getResults();
+        setTimeout(() => {
+            // Retrive search results
+            state.search.getResults();
 
             // 5. render results on UI
             clearLoader();
             searchView.renderSearchResults(state.search.result);
 
-        } catch {
-            alert('Somethign went wrong');
-            clearLoader();
-        }
+        }, 1500)
     }
 };
 
 // Function to display search result when clicked on
-const controlSearchItem = async () => {
+const controlSearchItem = () => {
 
     // Retrieve id from the nav bar
     const id = window.location.hash.replace('#', '');
@@ -101,24 +98,17 @@ const controlSearchItem = async () => {
         // create new search item object
         state.searchItem = new SearchItem(id);
 
-        try {
+        setTimeout(() => {
 
             // get the search item data
-            await state.searchItem.getResults();
+            state.searchItem.getResults();
 
             // Put new search item into UI
             clearLoader();
             searchView.renderSingleSearch(state.searchItem);
 
-        }
-
-        catch {
-            alert('Something went wrong, could you try again?')
-        }
-
+        }, 500)
     }
-
-
 };
 
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlSearchItem));
@@ -130,42 +120,39 @@ el.searchBtn.addEventListener('click', (event) => {
 });
 
 
-
-
-
   
 /*****************************
  * Post form controller
  *****************************/
 
 // Push form data
-const controlPost = async () => {
+const controlPost = () => {
     // Get text data
     const textData = postView.getTextData();
     // Get image data
     const imageFile = postView.getImage();
     // Create form data
     const formData = postView.prepForm(textData, imageFile);
+    
+
     // Create new post object
     state.post = new Post(formData);
     renderLoader(el.modalContent);
-    try {
+    console.log(state.post)
+    setTimeout(() => {
+
         // Attempt to post data
-        await state.post.postData()
+        postView.postData(formData);
         // Close modal
         el.modal.style.display = "none";
-        alert('Form Submitted!')
+        alert('Form Submitted!');
         postView.clearInputs();
         clearLoader();
 
         // Render results again to show the new post
-        controlList();
-        
-    } catch (error) {
-        alert(error);
-        clearLoader();
-
-    };
+        // controlList();
+    }, 1000)
+    
 };
 
 
@@ -200,9 +187,9 @@ el.submit.onclick = function() {
 // Information modal
 
 
-// el.modalInfoClose.onclick = function() {
-//     el.modalInfo.style.display = "none";
-// };
+el.modalInfoClose.onclick = function() {
+    el.modalInfo.style.display = "none";
+};
 
 
 // Reset View 
@@ -236,28 +223,13 @@ el.resetBtn.addEventListener('click', resetList);
 
 
 
-
-// Init on Dom load
-document.addEventListener('DOMContentLoaded', init);
-
-// Init App
-function init() {
-    const txtElement = document.querySelector('.txt-type');
-    const words = JSON.parse(txtElement.getAttribute('data-words'));
-    const wait = txtElement.getAttribute('data-wait');
-    // Init TypeWriter
-    new Loading(txtElement, words, wait);
-  }
- // Remove load screen
-setTimeout(function(){loadingView.removeLoad(); }, 10500);
-
 // Load the full list when the page loads
 window.addEventListener('load', () => {
-    
+
+    // Load the information modal
+    el.modalInfo.style.display = "block";
 
     // Load all wishes upon loading window
     controlList();
-
-    // 
 
 })

@@ -11,7 +11,7 @@ export const dataList = [
     {
         "id": 74,
         "title": "Testing 2",
-        "author": "Sarah",
+        "author": "Jennie",
         "wish": "I wanted to be happy. Without losing myself, I wanted to achieve everything I want. There were difficult days. Sometimes, I was nervous and afraid. How did I get through all that? With my loved ones, I’ve led a hectic life doing what I want to do. Staying with them. Sharing my life with them. In search of happiness.!!",
         "image": "img/danbam.png"
     },
@@ -39,7 +39,7 @@ export const dataList = [
     {
         "id": 80,
         "title": "Testing 6",
-        "author": "Afterschool",
+        "author": "jisoo",
         "wish": "Happiness. The warmth I share with you. I’m already happier than I ever imagined I could be.",
         "image": "img/danbam.png"
     },
@@ -60,7 +60,7 @@ export const dataList = [
     {
         "id": 84,
         "title": "Testing 9",
-        "author": "Jacob",
+        "author": "Rose",
         "wish": " might seem like it’s more than you can handle, but as long as you’re giving it your very best, it’s already more than enough. Due to that, I have decided to make a post for all the memorable quotes that resonated with me while I was watchi",
         "image": "img/danbam.png"
     },
